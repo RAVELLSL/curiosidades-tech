@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curiosidades Tecnológicas: Fatos Marcantes da Tecnologia</title>
+    <meta name="description" content="Descubra curiosidades e fatos marcantes da história da tecnologia, como o Cronovisor, o WannaCry e o Bug do Milênio.">
     <style>
-        /* Estilos Gerais */
         body {
             margin: 0;
             font-family: 'Verdana', sans-serif;
@@ -33,7 +33,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .card {
@@ -41,13 +41,14 @@
             border: 1px solid #cfd8dc;
             border-radius: 15px;
             padding: 20px;
-            width: 32%; /* Cards lado a lado */
+            width: 32%;
             box-sizing: border-box;
             height: auto;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-width: 280px;
         }
 
         .card h2 {
@@ -61,13 +62,37 @@
             flex-grow: 1;
         }
 
-        .iframe-container {
+        .sanfona {
             margin-top: 10px;
+            background: #e0f7fa;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #00796b;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .sanfona:hover {
+            background-color: #b2ebf2;
+        }
+
+        .iframe-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .iframe-container.open {
+            max-height: 300px; /* Altura máxima para revelar o iframe */
         }
 
         iframe {
             width: 100%;
-            height: 120px;
+            height: 200px;
             border: none;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -110,14 +135,13 @@
             text-decoration: underline;
         }
 
-        /* Responsividade para dispositivos móveis */
         @media (max-width: 600px) {
             .card {
-                width: 100%; /* Em telas menores, os cards ocupam 100% */
+                width: 100%;
             }
 
             iframe {
-                height: 150px;
+                height: 250px;
             }
 
             header h1 {
@@ -126,7 +150,6 @@
 
             .btn {
                 font-size: 0.9em;
-                padding: 8px 15px;
             }
         }
     </style>
@@ -139,35 +162,63 @@
         <article class="card">
             <h2>Cronovisor</h2>
             <p>Em 1950 o padre Pellegrino Ernetti liderou uma pesquisa científica sobre um dispositivo capaz de "visitar" o passado.</p>
+            <div class="sanfona" onclick="toggleSanfona(this)">Visualizar conteúdo</div>
             <div class="iframe-container">
                 <iframe src="https://drive.google.com/file/d/12NcvvqcBQ70mwsGkvUipJLcdw2GNj9KW/preview" 
-                        title="Pré-visualização de conteúdo sobre WannaCry"></iframe>
+                        data-src="https://drive.google.com/file/d/12NcvvqcBQ70mwsGkvUipJLcdw2GNj9KW/preview" 
+                        title="Pré-visualização de conteúdo sobre Cronovisor"></iframe>
             </div>
-            <a href="https://drive.google.com/file/d/1K0QIyNR5A8PgsDDOCJB2bdFlN--hiecE/view?usp=sharing" target="_blank" class="btn">Ler conteúdo</a>
+            <a href="https://drive.google.com/file/d/1K0QIyNR5A8PgsDDOCJB2bdFlN--hiecE/view?usp=sharing" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn">Ler conteúdo</a>
         </article>
 
         <article class="card">
             <h2>WannaCry</h2>
             <p>Em 2017, 200.000 computadores em 150 países foram infectados por um ransomware que causou prejuízos milionários.</p>
+            <div class="sanfona" onclick="toggleSanfona(this)">Visualizar conteúdo</div>
             <div class="iframe-container">
-                <iframe src="https://drive.google.com/file/d/1hw9tjMn4Vq7DOs4tZfY8M4auBtiFGNeT/preview" 
+                <iframe src="" 
+                        data-src="https://drive.google.com/file/d/1hw9tjMn4Vq7DOs4tZfY8M4auBtiFGNeT/preview" 
                         title="Pré-visualização de conteúdo sobre WannaCry"></iframe>
             </div>
-            <a href="https://drive.google.com/file/d/1-ZG-ytnOZ0YXGOJ5S00kYnMDlgda-qFR/view?usp=sharing" target="_blank" class="btn">Ler conteúdo</a>
+            <a href="https://drive.google.com/file/d/1-ZG-ytnOZ0YXGOJ5S00kYnMDlgda-qFR/view?usp=sharing" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn">Ler conteúdo</a>
         </article>
 
         <article class="card">
             <h2>Bug do Milênio</h2>
             <p>Era 31 de dezembro de 1999, 23:59h e ninguém sabia o que poderia acontecer aos sistemas computacionais ao redor do mundo.</p>
+            <div class="sanfona" onclick="toggleSanfona(this)">Visualizar conteúdo</div>
             <div class="iframe-container">
-                <iframe src="https://drive.google.com/file/d/1qBtc1LjY3xFKBt83LEm-biQmrySghY_Q/preview" 
+                <iframe src="" 
+                        data-src="https://drive.google.com/file/d/1qBtc1LjY3xFKBt83LEm-biQmrySghY_Q/preview" 
                         title="Pré-visualização de conteúdo sobre o Bug do Milênio"></iframe>
             </div>
-            <a href="https://drive.google.com/file/d/1MAg9fCizi-wqq5-fJgK0mN0h9SOLGXOy/view?usp=drive_link" target="_blank" class="btn">Ler conteúdo</a>
+            <a href="https://drive.google.com/file/d/1MAg9fCizi-wqq5-fJgK0mN0h9SOLGXOy/view?usp=drive_link" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn">Ler conteúdo</a>
         </article>
     </main>
     <footer>
-        &copy; 2024 <a href="#"></a>
+        &copy; 2024 Curiosidades Tecnológicas
     </footer>
+    <script>
+        function toggleSanfona(element) {
+            const container = element.nextElementSibling;
+            const iframe = container.querySelector('iframe');
+            const isOpen = container.classList.toggle('open');
+            
+            if (isOpen) {
+                iframe.src = iframe.getAttribute('data-src');
+            } else {
+                iframe.src = ""; // Limpa o src para parar o vídeo
+            }
+        }
+    </script>
 </body>
 </html>
