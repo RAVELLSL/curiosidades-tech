@@ -33,7 +33,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
-            justify-content: center;
+            justify-content: space-between;
         }
 
         .card {
@@ -41,8 +41,8 @@
             border: 1px solid #cfd8dc;
             border-radius: 15px;
             padding: 20px;
-            width: 90%; /* Responsivo */
-            max-width: 400px;
+            width: 32%; /* Cards lado a lado */
+            box-sizing: border-box;
             height: auto;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
@@ -113,8 +113,7 @@
         /* Responsividade para dispositivos móveis */
         @media (max-width: 600px) {
             .card {
-                padding: 15px;
-                width: 100%;
+                width: 100%; /* Em telas menores, os cards ocupam 100% */
             }
 
             iframe {
@@ -138,6 +137,16 @@
     </header>
     <main>
         <article class="card">
+            <h2>Cronovisor</h2>
+            <p>Em 1950 o padre Pellegrino Ernetti liderou uma pesquisa científica sobre um dispositivo capaz de "visitar" o passado.</p>
+            <div class="iframe-container">
+                <iframe src="https://drive.google.com/file/d/12NcvvqcBQ70mwsGkvUipJLcdw2GNj9KW/preview" 
+                        title="Pré-visualização de conteúdo sobre WannaCry"></iframe>
+            </div>
+            <a href="https://drive.google.com/file/d/1K0QIyNR5A8PgsDDOCJB2bdFlN--hiecE/view?usp=sharing" target="_blank" class="btn">Ler conteúdo</a>
+        </article>
+
+        <article class="card">
             <h2>WannaCry</h2>
             <p>Em 2017, 200.000 computadores em 150 países foram infectados por um ransomware que causou prejuízos milionários.</p>
             <div class="iframe-container">
@@ -158,7 +167,7 @@
         </article>
     </main>
     <footer>
-        &copy; 2024 <a href="#"></a>.
+        &copy; 2024 <a href="#"></a>
     </footer>
 </body>
 </html>
