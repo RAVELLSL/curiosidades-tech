@@ -1,255 +1,1166 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curiosidades Tecnológicas: Fatos Marcantes da Tecnologia</title>
-    <meta name="description" content="Descubra curiosidades e fatos marcantes da história da tecnologia, como o Cronovisor, o WannaCry e o Bug do Milênio.">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Verdana', sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            text-align: center;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curiosidades de Tecnologia</title>
 
-        header {
-            background: linear-gradient(to right, #88e0ef, #b8e994);
-            padding: 40px 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+  <style>
+    :root {
+      /* Paleta base */
+      --bg: #f5f7fb;
+      --bg-alt: #ffffff;
 
-        header h1 {
-            font-size: 2.5em;
-            margin: 0;
-            color: #005f73;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
+      /* Acentos principais (multi-paleta dentro da mesma proposta leve) */
+      --accent: #4c6fff;
+      --accent-strong: #2f4fff;
+      --accent-soft: rgba(76, 111, 255, 0.1);
 
-        main {
-            margin: 20px auto;
-            max-width: 1200px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
+      --accent-purple: #8b5cf6;
+      --accent-purple-soft: rgba(139, 92, 246, 0.12);
 
-        .card {
-            background: #ffffff;
-            border: 1px solid #cfd8dc;
-            border-radius: 15px;
-            padding: 20px;
-            width: 32%;
-            box-sizing: border-box;
-            height: auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-width: 280px;
-        }
+      --accent-teal: #0f9d8a;
+      --accent-teal-soft: rgba(15, 157, 138, 0.12);
 
-        .card h2 {
-            color: #00796b;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
+      --accent-amber: #f59e0b;
+      --accent-amber-soft: rgba(245, 158, 11, 0.14);
 
-        .card p {
-            margin-bottom: 10px;
-            flex-grow: 1;
-        }
+      --accent-pink: #ec4899;
+      --accent-pink-soft: rgba(236, 72, 153, 0.14);
 
-        .sanfona {
-            margin-top: 10px;
-            background: #e0f7fa;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            color: #00796b;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            text-align: center;
-        }
+      --accent-cyan: #06b6d4;
+      --accent-cyan-soft: rgba(6, 182, 212, 0.14);
 
-        .sanfona:hover {
-            background-color: #b2ebf2;
-        }
+      --text-main: #202337;
+      --text-muted: #6a6f86;
+      --border-soft: #e0e4f0;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-soft: 0 12px 26px rgba(24, 42, 110, 0.08);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.22s ease;
+    }
 
-        .iframe-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .iframe-container.open {
-            max-height: 300px; /* Altura máxima para revelar o iframe */
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #eef1ff 0, #f5f7fb 40%, #fef5ff 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
 
-        iframe {
-            width: 100%;
-            height: 120px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    main {
+      width: 100%;
+      max-width: 1200px;
+    }
 
-        .btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 1em;
-            color: #ffffff;
-            background-color: #88e0ef;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
+    header {
+      margin-bottom: 16px;
+    }
 
-        .btn:hover {
-            background-color: #65bcd9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-soft), var(--accent-purple-soft));
+      color: var(--accent-strong);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
 
-        footer {
-            padding: 15px;
-            background: #88e0ef;
-            color: #005f73;
-            font-size: 0.9em;
-            margin-top: 20px;
-        }
+    .tagline span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow:
+        0 0 0 4px rgba(76, 111, 255, 0.25),
+        0 0 0 7px rgba(139, 92, 246, 0.18);
+    }
 
-        footer a {
-            color: #005f73;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    h1 {
+      margin-top: 10px;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      letter-spacing: -0.03em;
+      font-weight: 700;
+    }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+    .subtitle {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      max-width: 640px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
 
-        @media (max-width: 600px) {
-            .card {
-                width: 100%;
-            }
+    /* BOTÃO DE TOGGLE DO PLAYER */
+    .player-toggle {
+      margin-bottom: 8px;
+      margin-top: 4px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 233, 0.7);
+      background: rgba(248, 249, 255, 0.95);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+      float: right;
+      clear: both;
+    }
 
-            iframe {
-                height: 150px;
-            }
+    .player-toggle::before {
+      content: "▸";
+      font-size: 0.8rem;
+      color: var(--accent-strong);
+    }
 
-            header h1 {
-                font-size: 2em;
-            }
+    .player-toggle.expanded::before {
+      content: "▾";
+    }
 
-            .btn {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    .player-toggle:hover {
+      background: rgba(224, 231, 255, 0.95);
+      border-color: rgba(99, 102, 241, 0.9);
+      box-shadow: 0 6px 14px rgba(24, 42, 110, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* PLAYER */
+    .player-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-image: linear-gradient(
+        135deg,
+        rgba(76, 111, 255, 0.08),
+        rgba(236, 72, 153, 0.06),
+        rgba(6, 182, 212, 0.04)
+      );
+      background-blend-mode: lighten;
+    }
+
+    /* Estado recolhido: player escondido */
+    .player-card.collapsed {
+      display: none;
+    }
+
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .player-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .player-label-top {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .player-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .player-chip {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      background-image: linear-gradient(
+        90deg,
+        rgba(76, 111, 255, 0.8),
+        rgba(139, 92, 246, 0.85)
+      );
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .player-frame {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(196, 204, 255, 0.9);
+      background: radial-gradient(circle at top, #e3e7ff, #c9d4ff, #fdf2ff);
+      aspect-ratio: 16 / 9;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: var(--radius-md);
+      background: transparent;
+    }
+
+    .player-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 12px;
+      pointer-events: none;
+    }
+
+    .player-placeholder-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      border: 1px solid rgba(139, 92, 246, 0.6);
+      background: radial-gradient(circle at top left, #fef3ff, #e9ddff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+      font-size: 1.3rem;
+    }
+
+    .player-placeholder h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .player-placeholder p {
+      font-size: 0.86rem;
+      max-width: 320px;
+      line-height: 1.4;
+    }
+
+    .player-footer {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .player-footer strong {
+      color: var(--accent-strong);
+    }
+
+    /* LAYOUT PRINCIPAL */
+    .layout {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      clear: both;
+      margin-top: 4px;
+    }
+
+    @media (min-width: 880px) {
+      .layout {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+
+    /* COLUNA DE CATEGORIAS */
+    .category-panel {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 12px;
+      flex: 0.9;
+    }
+
+    .category-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .category-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .category-nav-item button {
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-soft);
+      background: rgba(248, 249, 255, 0.9);
+      padding: 8px 10px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+      color: var(--text-main);
+    }
+
+    .category-nav-item button span {
+      font-weight: 600;
+    }
+
+    .category-nav-item button small {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Paletas por categoria */
+    .category-nav-item:nth-child(1) button {
+      --btn-accent: var(--accent);
+      --btn-accent-soft: var(--accent-soft);
+    }
+
+    .category-nav-item:nth-child(2) button {
+      --btn-accent: var(--accent-amber);
+      --btn-accent-soft: var(--accent-amber-soft);
+    }
+
+    .category-nav-item:nth-child(3) button {
+      --btn-accent: var(--accent-teal);
+      --btn-accent-soft: var(--accent-teal-soft);
+    }
+
+    .category-nav-item:nth-child(4) button {
+      --btn-accent: var(--accent-purple);
+      --btn-accent-soft: var(--accent-purple-soft);
+    }
+
+    .category-nav-item:nth-child(5) button {
+      --btn-accent: var(--accent-pink);
+      --btn-accent-soft: var(--accent-pink-soft);
+    }
+
+    .category-nav-item:nth-child(6) button {
+      --btn-accent: var(--accent-cyan);
+      --btn-accent-soft: var(--accent-cyan-soft);
+    }
+
+    .category-nav-item button:hover {
+      background: var(--btn-accent-soft, var(--accent-soft));
+      border-color: var(--btn-accent, var(--accent-strong));
+      box-shadow: 0 8px 18px rgba(29, 52, 129, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .category-nav-item button.active {
+      background: var(--btn-accent-soft, rgba(76, 111, 255, 0.14));
+      border-color: var(--btn-accent, var(--accent-strong));
+      box-shadow: 0 10px 22px rgba(29, 52, 129, 0.26);
+    }
+
+    /* COLUNA DE LISTA DE VÍDEOS */
+    .videos-panel {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 12px;
+      flex: 1.4;
+      min-height: 220px;
+    }
+
+    .videos-header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+
+    .videos-header h2 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .videos-header p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Grupos como listas verticais */
+    .video-group {
+      display: none;
+    }
+
+    .video-group.active {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .video-item {
+      list-style: none;
+    }
+
+    .video-button {
+      width: 100%;
+      text-align: left;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-soft);
+      background: rgba(249, 250, 255, 0.95);
+      padding: 8px 10px;
+      font-size: 0.86rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--text-main);
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+      position: relative;
+    }
+
+    .video-button-title {
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .video-button::after {
+      content: "▶";
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.8;
+    }
+
+    .video-button:hover {
+      background: rgba(248, 249, 255, 0.98);
+      border-color: rgba(148, 163, 233, 0.8);
+      box-shadow: 0 8px 18px rgba(29, 52, 129, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .video-button.active {
+      background: linear-gradient(
+        135deg,
+        rgba(76, 111, 255, 0.12),
+        rgba(139, 92, 246, 0.12)
+      );
+      border-color: rgba(76, 111, 255, 0.9);
+      box-shadow: 0 9px 20px rgba(29, 52, 129, 0.23);
+    }
+
+    .videos-empty {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      padding: 8px 4px;
+    }
+
+    /* Scroll suave em telas pequenas para o player */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
+  <main>
     <header>
-        <h1>Curiosidades Tecnológicas</h1>
+      <div class="tagline">
+        <span></span>
+        Curiosidades de Tecnologia
+      </div>
+      <h1>Uma viagem pelos mistérios, falhas e experimentos da história tecnológica</h1>
+      <p class="subtitle">
+        Escolha uma categoria, explore a lista de curiosidades e surpreenda-se com informações que
+        desafiaram nosso cotidiano e evolução tecnológica.
+      </p>
     </header>
-    <main>
 
-        <article class="card">
-            <h2>Colonial Pipeline</h2>
-            <p>Em 2021 ocorreu o maior ataque hacker na história recente dos EUA e muitas lições foram aprendidas desde então.</p>
-            <div class="sanfona" onclick="toggleSanfona(this)">Ouvir conteúdo</div>
-            <div class="iframe-container">
-                <iframe src="https://drive.google.com/file/d/13Abrg5MWfkcy80fZOsoMfMbDC7DY16lp/preview" 
-                        data-src="https://drive.google.com/file/d/13Abrg5MWfkcy80fZOsoMfMbDC7DY16lp/preview" 
-                        title="Pré-visualização de conteúdo sobre Cronovisor"></iframe>
-            </div>
-            <a href="https://drive.google.com/file/d/1zubwEa16MPO-cWdQH7GNmI1dUsGK4wgC/view?usp=sharing" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn">Ler conteúdo</a>
-        </article>
-        
-        <article class="card">
-            <h2>Anticitera</h2>
-            <p>Em 1901 um grupo de mergulhadores encontrou na Grécia o primeiro computador avançado construido pelo homem.</p>
-            <div class="sanfona" onclick="toggleSanfona(this)">Ouvir conteúdo</div>
-            <div class="iframe-container">
-                <iframe src="https://drive.google.com/file/d/1scFZE6VexwNh0K8XmHehN-GW6Sd0_BAC/preview" 
-                        data-src="https://drive.google.com/file/d/1scFZE6VexwNh0K8XmHehN-GW6Sd0_BAC/preview" 
-                        title="Pré-visualização de conteúdo sobre Cronovisor"></iframe>
-            </div>
-            <a href="https://drive.google.com/file/d/17PG45MmOW8aHvg3ZgNU7HORGuQ1D_52n/view?usp=sharing" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn">Ler conteúdo</a>
-        </article>
+    <!-- BOTÃO DE TOGGLE DO PLAYER -->
+    <button
+      type="button"
+      id="player-toggle"
+      class="player-toggle"
+      data-state="collapsed"
+    >
+      Mostrar player
+    </button>
 
-        <article class="card">
-            <h2>Cronovisor</h2>
-            <p>Em 1950 o padre Pellegrino Ernetti liderou uma pesquisa científica sobre um dispositivo capaz de "visitar" o passado.</p>
-            <div class="sanfona" onclick="toggleSanfona(this)">Ouvir conteúdo</div>
-            <div class="iframe-container">
-                <iframe src="https://drive.google.com/file/d/12NcvvqcBQ70mwsGkvUipJLcdw2GNj9KW/preview" 
-                        data-src="https://drive.google.com/file/d/12NcvvqcBQ70mwsGkvUipJLcdw2GNj9KW/preview" 
-                        title="Pré-visualização de conteúdo sobre Cronovisor"></iframe>
-            </div>
-            <a href="https://drive.google.com/file/d/1K0QIyNR5A8PgsDDOCJB2bdFlN--hiecE/view?usp=sharing" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn">Ler conteúdo</a>
-        </article>
+    <!-- PLAYER (inicia recolhido com a classe collapsed) -->
+    <section class="player-card collapsed" aria-label="Player de vídeo" id="player-card">
+      <div class="player-header">
+        <div class="player-labels">
+          <span class="player-label-top">Vídeo em reprodução</span>
+          <span id="current-title" class="player-title">
+            Selecione um vídeo em qualquer categoria
+          </span>
+        </div>
+        <div id="current-chip" class="player-chip">
+          Nenhuma categoria selecionada
+        </div>
+      </div>
 
-        <article class="card">
-            <h2>WannaCry</h2>
-            <p>Em 2017, 200.000 computadores em 150 países foram infectados por um ransomware que causou prejuízos milionários.</p>
-            <div class="sanfona" onclick="toggleSanfona(this)">Ouvir conteúdo</div>
-            <div class="iframe-container">
-                <iframe src="" 
-                        data-src="https://drive.google.com/file/d/1hw9tjMn4Vq7DOs4tZfY8M4auBtiFGNeT/preview" 
-                        title="Pré-visualização de conteúdo sobre WannaCry"></iframe>
-            </div>
-            <a href="https://drive.google.com/file/d/1-ZG-ytnOZ0YXGOJ5S00kYnMDlgda-qFR/view?usp=sharing" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn">Ler conteúdo</a>
-        </article>
+      <div class="player-frame" id="player-anchor">
+        <iframe
+          id="video-frame"
+          src=""
+          allowfullscreen
+          allow="autoplay; fullscreen"
+          title="Vídeo de curiosidades tecnológicas"
+          loading="lazy"
+        ></iframe>
 
-        <article class="card">
-            <h2>Bug do Milênio</h2>
-            <p>Era 31 de dezembro de 1999, 23:59h e ninguém sabia o que poderia acontecer aos sistemas computacionais ao redor do mundo.</p>
-            <div class="sanfona" onclick="toggleSanfona(this)">Ouvir conteúdo</div>
-            <div class="iframe-container">
-                <iframe src="" 
-                        data-src="https://drive.google.com/file/d/1qBtc1LjY3xFKBt83LEm-biQmrySghY_Q/preview" 
-                        title="Pré-visualização de conteúdo sobre o Bug do Milênio"></iframe>
-            </div>
-            <a href="https://drive.google.com/file/d/1MAg9fCizi-wqq5-fJgK0mN0h9SOLGXOy/view?usp=drive_link" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="btn">Ler conteúdo</a>
-        </article>
-    </main>
-    <footer>
-        &copy; 2024-2025
-    </footer>
-    <script>
-        function toggleSanfona(element) {
-            const container = element.nextElementSibling;
-            const iframe = container.querySelector('iframe');
-            const isOpen = container.classList.toggle('open');
-            
-            if (isOpen) {
-                iframe.src = iframe.getAttribute('data-src');
-            } else {
-                iframe.src = ""; // Limpa o src para parar o vídeo
-            }
+        <div id="player-placeholder" class="player-placeholder">
+          <div class="player-placeholder-icon">🎬</div>
+          <h2>Comece explorando as listas</h2>
+          <p>
+            Clique em qualquer curiosidade nas listas abaixo para carregar o vídeo aqui no player.
+          </p>
+        </div>
+      </div>
+
+      <div class="player-footer">
+        <span>Dica: você pode recolher o player e continuar explorando as listas.</span>
+        <span>Todos os vídeos são exibidos via iframe, diretamente do serviço Mega.</span>
+      </div>
+    </section>
+
+    <!-- LAYOUT PRINCIPAL: CATEGORIAS + LISTA DE VÍDEOS -->
+    <section class="layout">
+      <!-- COLUNA DE CATEGORIAS -->
+      <aside class="category-panel" aria-label="Categorias de curiosidades">
+        <p class="category-title">Categorias</p>
+        <ul class="category-nav">
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn active"
+              data-category="c1"
+              data-description="Tecnologias enigmáticas, artefatos misteriosos e descobertas que parecem anacrônicas."
+            >
+              <span>1. Artefatos e mistérios tecnológicos antigos</span>
+              <small>Mecanismos, mapas e objetos à frente do seu tempo.</small>
+            </button>
+          </li>
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn"
+              data-category="c2"
+              data-description="Falhas de software, bugs discretos e erros de projeto que causaram grandes impactos."
+            >
+              <span>2. Falhas e bugs tecnológicos de grande impacto</span>
+              <small>Do bug do milênio a erros em sistemas críticos.</small>
+            </button>
+          </li>
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn"
+              data-category="c3"
+              data-description="Ataques digitais, malware avançado e operações silenciosas no ciberespaço."
+            >
+              <span>3. Ciberataques e sabotagens digitais</span>
+              <small>Quando o inimigo é invisível e está na rede.</small>
+            </button>
+          </li>
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn"
+              data-category="c4"
+              data-description="Quedas, apagões e gargalos de infraestrutura que afetaram milhões de pessoas."
+            >
+              <span>4. Colapsos tecnológicos e crises de infraestrutura</span>
+              <small>Serviços “impossíveis de cair” que saíram do ar.</small>
+            </button>
+          </li>
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn"
+              data-category="c5"
+              data-description="Projetos científicos avançados que lembram roteiros de ficção científica."
+            >
+              <span>5. Experimentos e artefatos científicos que beiram a ficção</span>
+              <small>Do bóson de Higgs às interfaces cérebro-computador.</small>
+            </button>
+          </li>
+          <li class="category-nav-item">
+            <button
+              type="button"
+              class="category-btn"
+              data-category="c6"
+              data-description="Riscos atuais e futuros ligados à hiperconectividade e à inteligência artificial."
+            >
+              <span>6. Casos emergentes e potenciais “novos bugs do milênio”</span>
+              <small>Deepfakes, IA em massa e dependência digital.</small>
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- COLUNA DE LISTA DE VÍDEOS -->
+      <section class="videos-panel" aria-label="Lista de vídeos">
+        <div class="videos-header">
+          <h2 id="videos-header-title">Artefatos e mistérios tecnológicos antigos</h2>
+          <p id="videos-header-desc">
+            Tecnologias enigmáticas, artefatos misteriosos e descobertas que parecem anacrônicas.
+          </p>
+        </div>
+
+        <!-- Grupo 1 – Artefatos e mistérios tecnológicos antigos -->
+        <ul class="video-group active" data-category="c1">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/6jR1mBDZ#pJkEHRz-bo-tiFHwnHtGhDRX-TDb26q6ua5oeTqGhN8"
+              data-title="O Mecanismo de Anticítera"
+              data-chip="Artefatos antigos"
+            >
+              <span class="video-button-title">O Mecanismo de Anticítera</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/zyYXXAyb#7asri2AM7OtBErZFfny5sYNEhKepbmcc_xMecOYBIrc"
+              data-title="Bateria de Bagdá (Parthian Battery)"
+              data-chip="Artefatos antigos"
+            >
+              <span class="video-button-title">Bateria de Bagdá (Parthian Battery)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/uz5mjbSb#Gl-8UyuU7-Gu1dZgVpi-0eAlXcUxxVb-Dl_PMVL_cpg"
+              data-title="Pedra de Dendera (Egito Antigo)"
+              data-chip="Artefatos antigos"
+            >
+              <span class="video-button-title">Pedra de Dendera (Egito Antigo)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/K3ZWGJRK#BFPltM6bOohxEbDCDkEdzrpH2CHdTVNgEEqjDjHRV6E"
+              data-title="Cristais de quartzo e lentes de Nimrud (Mesopotâmia)"
+              data-chip="Artefatos antigos"
+            >
+              <span class="video-button-title">
+                Cristais de quartzo e lentes de Nimrud (Mesopotâmia)
+              </span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/3uYSxJbD#iiqYD6EreXHtOtI0yozN072EW3In3WXyZbszIHHVKu4"
+              data-title="Cronovisor"
+              data-chip="Artefatos antigos"
+            >
+              <span class="video-button-title">Cronovisor</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Grupo 2 – Falhas e bugs tecnológicos de grande impacto -->
+        <ul class="video-group" data-category="c2">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/nr5GSJbI#DsbZJ8SVjdhRYTvUhDpWkxowohx4E2-btD76eCMISiM"
+              data-title="Bug do Milênio"
+              data-chip="Falhas e bugs"
+            >
+              <span class="video-button-title">Bug do Milênio</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/umxCXAxC#BxNKFFYFcQDPauR6exuRVgDFIKLnX2SIUuVnwgwRCFg"
+              data-title="Leap Second Bug (2012)"
+              data-chip="Falhas e bugs"
+            >
+              <span class="video-button-title">Leap Second Bug (2012)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/j2JDkZTK#qmYLKEl3RpbUlBtNkr-OB_SiCCVGZ28bdhk07-i8fug"
+              data-title="Heartbleed (2014)"
+              data-chip="Falhas e bugs"
+            >
+              <span class="video-button-title">Heartbleed (2014)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/K2QigC6R#iTSDHtAMCoqPVDQ1OQ0zpIRnuhJ5FSlMP-duXahjg9k"
+              data-title="Spectre e Meltdown (2018)"
+              data-chip="Falhas e bugs"
+            >
+              <span class="video-button-title">Spectre e Meltdown (2018)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/PugV0CbT#9Ut8h5bRQP63bhoGKI0ZZu2qpWlU0IcTHFZvfqbJ778"
+              data-title="Log4Shell (2021)"
+              data-chip="Falhas e bugs"
+            >
+              <span class="video-button-title">Log4Shell (2021)</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Grupo 3 – Ciberataques e sabotagens digitais -->
+        <ul class="video-group" data-category="c3">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/K7RnFIJT#3N9fgnrGDqMZZB6bXOANG2Zju8r-CGfjy4pURhNJjCA"
+              data-title="Stuxnet"
+              data-chip="Ciberataques"
+            >
+              <span class="video-button-title">Stuxnet</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/nvhS3CpL#wkPHu3EPNqLKqW-h3GV3jEq05oDU1PjMZv5uGcSy5q4"
+              data-title="WannaCry"
+              data-chip="Ciberataques"
+            >
+              <span class="video-button-title">WannaCry</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/7iwDjaAR#9wu8RvAFL1KhPW7XjScB-RNb4r9nV5E94-tpQAU20kQ"
+              data-title="NotPetya"
+              data-chip="Ciberataques"
+            >
+              <span class="video-button-title">NotPetya</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/2rhG1BgA#gDbkJjja35bhvwDRTRvuSJsGwMWj-CYgNbEh9IvdOTo"
+              data-title="SolarWinds"
+              data-chip="Ciberataques"
+            >
+              <span class="video-button-title">SolarWinds</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/6mAVBbKB#ydV9kx4dDpb-OgghW-IZTRQKBDLZ2uCmnvdyee04ruI"
+              data-title="Colonial Pipeline"
+              data-chip="Ciberataques"
+            >
+              <span class="video-button-title">Colonial Pipeline</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Grupo 4 – Colapsos tecnológicos e crises de infraestrutura -->
+        <ul class="video-group" data-category="c4">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/26xAEDwC#O8rfH83Vq51Uj6gkp-3ishPWidFIk7u6sRRDAMYVBZg"
+              data-title="Blackout 2003"
+              data-chip="Colapsos"
+            >
+              <span class="video-button-title">Blackout 2003</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/LzBklAII#v3auFUeNqvJZKd7Xv35Hxw8Hbz0dorKCSxqE-epo47o"
+              data-title="Crash da Bolsa de 2010 (Flash Crash)"
+              data-chip="Colapsos"
+            >
+              <span class="video-button-title">Crash da Bolsa de 2010 (Flash Crash)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/z7Yg3SxB#eoSikQqctbCN3DlekBMnE8Xa2EevmugAWbQ1Rg6ib50"
+              data-title="Outages AWS 2017–2024"
+              data-chip="Colapsos"
+            >
+              <span class="video-button-title">Outages AWS 2017–2024</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/y6YEFTKB#bAKeuOZBwU0N4KmpIM0YI7Iur6g5x1kpvta3i0waGSc"
+              data-title="Apagão do Facebook 2021"
+              data-chip="Colapsos"
+            >
+              <span class="video-button-title">Apagão do Facebook 2021</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Grupo 5 – Experimentos e artefatos científicos que beiram a ficção -->
+        <ul class="video-group" data-category="c5">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/CmxCyaDD#ditxwuM2W9awcIBIvQTGAQIx4iMcwPf2UmDQbLjeV3c"
+              data-title="Projeto Manhattan (1940s)"
+              data-chip="Experimentos"
+            >
+              <span class="video-button-title">Projeto Manhattan (1940s)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/f6JWlA4Z#LH1nWBemhk6Vge3EwyYXS6xCAqIcKEQkofWolZK00XQ"
+              data-title="Experimento de Filadélfia (1943)"
+              data-chip="Experimentos"
+            >
+              <span class="video-button-title">Experimento de Filadélfia (1943)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/O3ISmYhS#51omN59t05gT5Ds895MA7nDsAN2cU7QQQbNNe6TFD1k"
+              data-title="Projeto MKUltra (1950s–60s)"
+              data-chip="Experimentos"
+            >
+              <span class="video-button-title">Projeto MKUltra (1950s–60s)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/yywUAQJa#WGMfEqmCQjBnjj3tKM2mN3_C82vZquSEvjDW0CLc8lM"
+              data-title="CERN e o God Particle (2012)"
+              data-chip="Experimentos"
+            >
+              <span class="video-button-title">CERN e o God Particle (2012)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/e2wGEZDJ#t6IqY3gVToHsilXyWk-p2vxHRxSqcY_zn352yy0fMTQ"
+              data-title="Cambridge Analytica (2018)"
+              data-chip="Experimentos"
+            >
+              <span class="video-button-title">Cambridge Analytica (2018)</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Grupo 6 – Casos emergentes e potenciais “novos bugs do milênio” -->
+        <ul class="video-group" data-category="c6">
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/r2JziayQ#knxdDPpOwkuMx3U_6kM7Xh8tVB2pqksBpmW4D6nKle4"
+              data-title="Colapso de exchanges de criptomoedas (FTX, 2022)"
+              data-chip="Casos emergentes"
+            >
+              <span class="video-button-title">
+                Colapso de exchanges de criptomoedas (FTX, 2022)
+              </span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/n25k1KxQ#jf3r2tW_CfmrwbuCrKTZJBxxKEJi_rYd8G-WEsWKhjU"
+              data-title="Deepfake Politics (2024–2025)"
+              data-chip="Casos emergentes"
+            >
+              <span class="video-button-title">Deepfake Politics (2024–2025)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/umIwACwD#AKNtydloiSOUUOBsmyKRfWqF2HyIP5OcfAjpxDv8wWE"
+              data-title="AI Bubble (2025)"
+              data-chip="Casos emergentes"
+            >
+              <span class="video-button-title">AI Bubble (2025)</span>
+            </button>
+          </li>
+
+          <li class="video-item">
+            <button
+              type="button"
+              class="video-button"
+              data-video="https://mega.nz/file/yix20ZJD#Fp1uluN05jbMV73hNWYncQy3po8w0tJIirRLF0bBVSM"
+              data-title="Black Swan Algorithms"
+              data-chip="Casos emergentes"
+            >
+              <span class="video-button-title">Black Swan Algorithms</span>
+            </button>
+          </li>
+        </ul>
+
+        <p class="videos-empty" id="videos-empty" style="display: none;">
+          Nenhuma categoria selecionada. Escolha uma categoria à esquerda para ver a lista de vídeos.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const categoryButtons = document.querySelectorAll(".category-btn");
+      const videoGroups = document.querySelectorAll(".video-group");
+      const videosHeaderTitle = document.getElementById("videos-header-title");
+      const videosHeaderDesc = document.getElementById("videos-header-desc");
+      const videosEmpty = document.getElementById("videos-empty");
+
+      const frame = document.getElementById("video-frame");
+      const placeholder = document.getElementById("player-placeholder");
+      const currentTitle = document.getElementById("current-title");
+      const currentChip = document.getElementById("current-chip");
+      const playerCard = document.getElementById("player-card");
+      const playerToggle = document.getElementById("player-toggle");
+
+      const defaultTitleText = "Selecione um vídeo em qualquer categoria";
+      const defaultChipText = "Nenhuma categoria selecionada";
+
+      function clearCategoryActive() {
+        categoryButtons.forEach(btn => btn.classList.remove("active"));
+      }
+
+      function clearVideoActive() {
+        document.querySelectorAll(".video-button").forEach(btn =>
+          btn.classList.remove("active")
+        );
+      }
+
+      function showGroup(categoryId) {
+        let anyActive = false;
+        videoGroups.forEach(group => {
+          if (group.dataset.category === categoryId) {
+            group.classList.add("active");
+            anyActive = true;
+          } else {
+            group.classList.remove("active");
+          }
+        });
+        videosEmpty.style.display = anyActive ? "none" : "block";
+      }
+
+      function expandPlayer() {
+        playerCard.classList.remove("collapsed");
+        playerToggle.dataset.state = "expanded";
+        playerToggle.classList.add("expanded");
+        playerToggle.textContent = "Recolher player";
+      }
+
+      function collapsePlayer() {
+        // limpa o vídeo e volta para o estado neutro
+        frame.src = "";
+        placeholder.style.display = "block";
+        currentTitle.textContent = defaultTitleText;
+        currentChip.textContent = defaultChipText;
+
+        playerCard.classList.add("collapsed");
+        playerToggle.dataset.state = "collapsed";
+        playerToggle.classList.remove("expanded");
+        playerToggle.textContent = "Mostrar player";
+      }
+
+      // Estado inicial: player recolhido
+      collapsePlayer();
+
+      // Clique no botão de toggle do player
+      playerToggle.addEventListener("click", () => {
+        const state = playerToggle.dataset.state || "collapsed";
+        if (state === "collapsed") {
+          expandPlayer();
+        } else {
+          collapsePlayer();
         }
-    </script>
+      });
+
+      // Clique em categoria
+      categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const categoryId = btn.dataset.category;
+          const description = btn.dataset.description || "";
+
+          clearCategoryActive();
+          btn.classList.add("active");
+
+          const titleText =
+            btn.querySelector("span")?.textContent?.trim() || "Categoria selecionada";
+          videosHeaderTitle.textContent = titleText;
+          videosHeaderDesc.textContent = description;
+
+          showGroup(categoryId);
+        });
+      });
+
+      // Clique em vídeo
+      document.querySelectorAll(".video-button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          let videoUrl = btn.dataset.video;
+          const title =
+            btn.dataset.title ||
+            btn.querySelector(".video-button-title")?.textContent?.trim() ||
+            "Vídeo selecionado";
+          const chipText = btn.dataset.chip || "Curiosidades";
+
+          if (!videoUrl) return;
+
+          // Garante que o player esteja visível ao clicar no vídeo
+          expandPlayer();
+
+          // Normaliza link do Mega para formato EMBED com autoplay
+          videoUrl = videoUrl.trim();
+
+          // remove /preview caso exista
+          if (videoUrl.includes("/preview")) {
+            videoUrl = videoUrl.replace("/preview", "");
+          }
+
+          // converte /file/ para /embed/
+          if (videoUrl.includes("mega.nz/file/")) {
+            videoUrl = videoUrl.replace("mega.nz/file/", "mega.nz/embed/");
+          }
+
+          // se não houver parâmetros, adiciona autoplay preservando o hash
+          if (videoUrl.includes("#") && !videoUrl.includes("?")) {
+            const [base, hash] = videoUrl.split("#");
+            videoUrl = `${base}?autoplay=1#${hash}`;
+          }
+
+          clearVideoActive();
+          btn.classList.add("active");
+
+          frame.src = videoUrl;
+          currentTitle.textContent = title;
+          currentChip.textContent = chipText;
+          placeholder.style.display = "none";
+
+          // Em telas menores, rola até o player
+          if (window.innerWidth < 880) {
+            const anchor = document.getElementById("player-anchor");
+            const rect = anchor.getBoundingClientRect();
+            const offset = window.scrollY + rect.top - 60;
+            window.scrollTo({ top: offset, behavior: "smooth" });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
