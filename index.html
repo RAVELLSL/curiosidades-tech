@@ -48,6 +48,10 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
@@ -499,9 +503,139 @@
       padding: 8px 4px;
     }
 
-    /* Scroll suave em telas pequenas para o player */
-    html {
-      scroll-behavior: smooth;
+    /* =========================
+       OTIMIZAÇÕES RESPONSIVAS
+       ========================= */
+
+    /* Smartphones: até 719px */
+    @media (max-width: 719.98px) {
+      body {
+        padding: 10px;
+      }
+
+      header {
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 1.35rem;
+        line-height: 1.25;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+        max-width: 100%;
+      }
+
+      .player-toggle {
+        float: none;
+        width: 100%;
+        justify-content: center;
+        margin-top: 12px;
+        margin-bottom: 10px;
+      }
+
+      .player-card,
+      .category-panel,
+      .videos-panel {
+        padding: 10px;
+        border-radius: 14px;
+      }
+
+      .player-header {
+        align-items: flex-start;
+      }
+
+      .player-chip {
+        margin-top: 4px;
+      }
+
+      .player-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .category-title {
+        font-size: 0.85rem;
+      }
+
+      .category-nav-item button {
+        padding: 8px;
+        font-size: 0.86rem;
+      }
+
+      .category-nav-item button small {
+        font-size: 0.78rem;
+      }
+
+      .videos-header h2 {
+        font-size: 0.96rem;
+      }
+
+      .videos-header p {
+        font-size: 0.82rem;
+      }
+
+      .video-button {
+        padding: 8px;
+        font-size: 0.84rem;
+        gap: 6px;
+      }
+
+      .video-button::after {
+        font-size: 0.72rem;
+      }
+
+      .layout {
+        gap: 10px;
+        margin-top: 6px;
+      }
+    }
+
+    /* Telas intermediárias / tablets: 720px a 879px */
+    @media (min-width: 720px) and (max-width: 879.98px) {
+      body {
+        padding: 12px;
+      }
+
+      main {
+        max-width: 1000px;
+      }
+
+      .layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .category-panel {
+        padding: 10px;
+        flex: 0.95;
+      }
+
+      .videos-panel {
+        padding: 10px;
+        flex: 1.5;
+        min-height: 0;
+      }
+
+      .player-card {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: clamp(1.45rem, 2.4vw, 1.8rem);
+      }
+
+      .subtitle {
+        max-width: 90%;
+      }
+
+      .player-footer {
+        gap: 6px;
+      }
     }
   </style>
 </head>
@@ -699,7 +833,7 @@
               data-chip="Artefatos antigos"
             >
               <span class="video-button-title">
-                Cristais de quartzo e lentes de Nimrud (Mesopotâmia)
+                Cristais de quartzo e lenses de Nimrud (Mesopotâmia)
               </span>
             </button>
           </li>
