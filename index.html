@@ -172,7 +172,6 @@
       background-blend-mode: lighten;
     }
 
-    /* Estado recolhido: player escondido */
     .player-card.collapsed {
       display: none;
     }
@@ -294,6 +293,7 @@
       gap: 12px;
       clear: both;
       margin-top: 4px;
+      position: relative;
     }
 
     @media (min-width: 880px) {
@@ -430,6 +430,27 @@
       color: var(--text-muted);
     }
 
+    .videos-close {
+      margin-top: 4px;
+      align-self: flex-end;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 4px 8px;
+      border-radius: 999px;
+      transition:
+        background var(--transition-fast),
+        color var(--transition-fast);
+      display: none; /* só será exibido em mobile */
+    }
+
+    .videos-close:hover {
+      background: rgba(148, 163, 233, 0.18);
+      color: var(--accent-strong);
+    }
+
     /* Grupos como listas verticais */
     .video-group {
       display: none;
@@ -503,6 +524,19 @@
       padding: 8px 4px;
     }
 
+    /* BACKDROP DO MODAL DE VÍDEOS (MOBILE) */
+    .videos-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.42);
+      z-index: 80;
+      display: none;
+    }
+
+    .videos-backdrop.is-visible {
+      display: block;
+    }
+
     /* =========================
        OTIMIZAÇÕES RESPONSIVAS
        ========================= */
@@ -536,8 +570,7 @@
       }
 
       .player-card,
-      .category-panel,
-      .videos-panel {
+      .category-panel {
         padding: 10px;
         border-radius: 14px;
       }
@@ -569,6 +602,34 @@
         font-size: 0.78rem;
       }
 
+      .layout {
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      /* VIDEOS-PANEL COMO MODAL CENTRALIZADO EM MOBILE */
+      .videos-panel {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 32px);
+        max-width: 460px;
+        max-height: 70vh;
+        overflow-y: auto;
+        z-index: 100;
+        display: none; /* por padrão escondido em mobile */
+      }
+
+      .videos-panel.is-open {
+        display: block;
+      }
+
+      .videos-panel {
+        padding: 12px;
+        border-radius: 16px;
+      }
+
       .videos-header h2 {
         font-size: 0.96rem;
       }
@@ -587,9 +648,8 @@
         font-size: 0.72rem;
       }
 
-      .layout {
-        gap: 10px;
-        margin-top: 6px;
+      .videos-close {
+        display: inline-flex;
       }
     }
 
@@ -619,6 +679,11 @@
         padding: 10px;
         flex: 1.5;
         min-height: 0;
+        position: static;
+        transform: none;
+        max-height: none;
+        overflow: visible;
+        display: block;
       }
 
       .player-card {
@@ -702,6 +767,9 @@
       </div>
     </section>
 
+    <!-- BACKDROP PARA O MODAL DE VÍDEOS EM MOBILE -->
+    <div class="videos-backdrop" id="videos-backdrop"></div>
+
     <!-- LAYOUT PRINCIPAL: CATEGORIAS + LISTA DE VÍDEOS -->
     <section class="layout">
       <!-- COLUNA DE CATEGORIAS -->
@@ -777,13 +845,21 @@
         </ul>
       </aside>
 
-      <!-- COLUNA DE LISTA DE VÍDEOS -->
+      <!-- COLUNA / MODAL DE LISTA DE VÍDEOS -->
       <section class="videos-panel" aria-label="Lista de vídeos">
         <div class="videos-header">
           <h2 id="videos-header-title">Artefatos e mistérios tecnológicos antigos</h2>
           <p id="videos-header-desc">
             Tecnologias enigmáticas, artefatos misteriosos e descobertas que parecem anacrônicas.
           </p>
+          <button
+            type="button"
+            id="videos-close"
+            class="videos-close"
+            aria-label="Fechar lista de vídeos"
+          >
+            Fechar
+          </button>
         </div>
 
         <!-- Grupo 1 – Artefatos e mistérios tecnológicos antigos -->
@@ -833,7 +909,7 @@
               data-chip="Artefatos antigos"
             >
               <span class="video-button-title">
-                Cristais de quartzo e lenses de Nimrud (Mesopotâmia)
+                Cristais de quartzo e lentes de Nimrud (Mesopotâmia)
               </span>
             </button>
           </li>
@@ -1166,8 +1242,16 @@
       const playerCard = document.getElementById("player-card");
       const playerToggle = document.getElementById("player-toggle");
 
+      const videosPanel = document.querySelector(".videos-panel");
+      const videosBackdrop = document.getElementById("videos-backdrop");
+      const videosClose = document.getElementById("videos-close");
+
       const defaultTitleText = "Selecione um vídeo em qualquer categoria";
       const defaultChipText = "Nenhuma categoria selecionada";
+
+      function isMobile() {
+        return window.innerWidth < 720;
+      }
 
       function clearCategoryActive() {
         categoryButtons.forEach(btn => btn.classList.remove("active"));
@@ -1200,7 +1284,6 @@
       }
 
       function collapsePlayer() {
-        // limpa o vídeo e volta para o estado neutro
         frame.src = "";
         placeholder.style.display = "block";
         currentTitle.textContent = defaultTitleText;
@@ -1210,6 +1293,19 @@
         playerToggle.dataset.state = "collapsed";
         playerToggle.classList.remove("expanded");
         playerToggle.textContent = "Mostrar player";
+      }
+
+      function openVideosModal() {
+        if (!isMobile()) return;
+        videosPanel.classList.add("is-open");
+        videosBackdrop.classList.add("is-visible");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeVideosModal() {
+        videosPanel.classList.remove("is-open");
+        videosBackdrop.classList.remove("is-visible");
+        document.body.style.overflow = "";
       }
 
       // Estado inicial: player recolhido
@@ -1222,6 +1318,19 @@
           expandPlayer();
         } else {
           collapsePlayer();
+        }
+      });
+
+      // Clique em backdrop para fechar modal de vídeos no mobile
+      videosBackdrop.addEventListener("click", closeVideosModal);
+
+      // Botão "Fechar" do modal de vídeos
+      videosClose.addEventListener("click", closeVideosModal);
+
+      // Ajuste ao redimensionar janela: se sair do mobile, garante que modal está fechado
+      window.addEventListener("resize", () => {
+        if (!isMobile()) {
+          closeVideosModal();
         }
       });
 
@@ -1240,6 +1349,11 @@
           videosHeaderDesc.textContent = description;
 
           showGroup(categoryId);
+
+          // Em smartphone, abre modal ao escolher a seção
+          if (isMobile()) {
+            openVideosModal();
+          }
         });
       });
 
@@ -1284,6 +1398,11 @@
           currentTitle.textContent = title;
           currentChip.textContent = chipText;
           placeholder.style.display = "none";
+
+          // Em smartphone, fecha o modal após escolher o vídeo
+          if (isMobile()) {
+            closeVideosModal();
+          }
 
           // Em telas menores, rola até o player
           if (window.innerWidth < 880) {
