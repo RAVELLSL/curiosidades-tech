@@ -9,36 +9,33 @@
        SISTEMA DE TEMAS (Cores Dinâmicas)
        ========================= */
     
-    /* 1. TEMA CLARO (Padrão) */
     :root {
-      --bg-base: #f1f5f9;      /* Fundo geral (Slate 100) */
-      --bg-panel: #ffffff;     /* Fundo dos painéis e sidebar (Branco) */
-      --bg-hover: #e2e8f0;     /* Efeito de hover (Slate 200) */
-      --border-color: #cbd5e1; /* Bordas suaves (Slate 300) */
+      --bg-base: #f1f5f9;      
+      --bg-panel: #ffffff;     
+      --bg-hover: #e2e8f0;     
+      --border-color: #cbd5e1; 
       
-      --text-main: #0f172a;    /* Texto principal escuro (Slate 900) */
-      --text-muted: #64748b;   /* Texto secundário (Slate 500) */
+      --text-main: #0f172a;    
+      --text-muted: #64748b;   
       
-      --accent: #3b82f6;       /* Azul destaque principal */
-      --accent-hover: #2563eb; /* Azul destaque hover */
-      --success: #10b981;      /* Verde para status operacional */
+      --accent: #3b82f6;       
+      --accent-hover: #2563eb; 
+      --success: #10b981;      
       
       --radius: 8px;
       --transition: 0.25s ease;
       
-      /* Efeito visual extra para o tema claro */
       --shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     }
 
-    /* 2. TEMA ESCURO (Ativado via classe no body) */
     body.dark-theme {
-      --bg-base: #0f172a;      /* Fundo escuro profundo */
-      --bg-panel: #1e293b;     /* Painéis um tom mais claros */
-      --bg-hover: #334155;     /* Hover escuro */
-      --border-color: #334155; /* Bordas discretas */
+      --bg-base: #0f172a;      
+      --bg-panel: #1e293b;     
+      --bg-hover: #334155;     
+      --border-color: #334155; 
       
-      --text-main: #f8fafc;    /* Texto principal claro */
-      --text-muted: #94a3b8;   /* Texto secundário acinzentado */
+      --text-main: #f8fafc;    
+      --text-muted: #94a3b8;   
       
       --shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     }
@@ -54,19 +51,17 @@
       background-color: var(--bg-base);
       color: var(--text-main);
       height: 100vh;
-      overflow: hidden;
+      overflow: hidden; /* Mantido para Desktop */
       display: flex;
-      /* Transição suave ao trocar de tema em toda a página */
       transition: background-color var(--transition), color var(--transition);
     }
 
-    /* Transição suave para elementos que mudam de cor com o tema */
     .sidebar, .topbar, .widget, .kpi-card, .player-info-bar, .player-overlay {
       transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
     }
 
     /* =========================
-       LAYOUT DO DASHBOARD
+       LAYOUT DO DASHBOARD (DESKTOP)
        ========================= */
     .sidebar {
       width: 260px;
@@ -208,7 +203,6 @@
       gap: 16px;
     }
 
-    /* Botão de Alternar Tema */
     .theme-toggle-btn {
       background: transparent;
       border: 1px solid var(--border-color);
@@ -324,8 +318,8 @@
     .player-container {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
-      background-color: #000; /* O fundo do vídeo em si deve permanecer preto */
+      padding-top: 56.25%; 
+      background-color: #000; 
     }
 
     .player-container iframe {
@@ -449,22 +443,11 @@
       font-size: 0.9rem;
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-base);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-color);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
-    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-    /* Botão Menu Mobile */
     .mobile-menu-btn {
       display: none;
       background: transparent;
@@ -476,21 +459,21 @@
     }
 
     /* =========================
-       RESPONSIVIDADE
+       RESPONSIVIDADE (Ajustes Estritos para Mobile)
        ========================= */
     @media (max-width: 1024px) {
       .main-grid {
         grid-template-columns: 1fr;
-      }
-      .video-list-container {
-        max-height: 300px;
       }
     }
 
     @media (max-width: 768px) {
       body {
         flex-direction: column;
-        overflow: auto;
+        overflow: auto; /* Libera a rolagem geral no mobile */
+      }
+      .main-wrapper {
+        overflow: visible; /* Remove a trava do container principal */
       }
       .sidebar {
         width: 100%;
@@ -506,13 +489,14 @@
       }
       .nav-section {
         display: none;
-        max-height: 300px;
+        max-height: 350px;
       }
       .nav-section.open {
         display: block;
       }
       .content-area {
-        overflow-y: visible;
+        overflow-y: visible; /* Garante que a área flua naturalmente */
+        padding: 16px;
       }
       .topbar {
         flex-direction: column;
@@ -527,6 +511,17 @@
       }
       .kpi-grid {
         grid-template-columns: 1fr 1fr;
+      }
+      .video-list-container {
+        max-height: none; /* Remove limitação de altura no mobile */
+        overflow-y: visible;
+      }
+      .widget {
+        overflow: visible; 
+      }
+      /* Aumenta a área de toque para facilitar a usabilidade no celular */
+      .video-row {
+        padding: 16px; 
       }
     }
   </style>
@@ -576,7 +571,6 @@
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema escuro/claro" title="Mudar tema">
           🌙
         </button>
-        
         <div class="system-status">
           <div class="status-dot"></div>
           <span>Sistema Operacional</span>
@@ -853,20 +847,12 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // ==========================================
-      // LÓGICA DO TEMA (CLARO / ESCURO)
-      // ==========================================
+      // Toggle de Tema
       const themeToggleBtn = document.getElementById("theme-toggle");
       const body = document.body;
-
-      // Importante: A página carrega limpa, o que força o :root original (Tema Claro).
-      // Não utilizaremos 'localStorage' no onload justamente para forçar a exigência de que "por definição a página deve sempre iniciar no tema claro".
       
       themeToggleBtn.addEventListener("click", () => {
-        // Alterna a classe dark-theme no body
         body.classList.toggle("dark-theme");
-        
-        // Atualiza o ícone do botão dependendo do estado atual
         if (body.classList.contains("dark-theme")) {
           themeToggleBtn.textContent = "☀️";
           themeToggleBtn.setAttribute("aria-label", "Mudar para tema claro");
@@ -878,10 +864,7 @@
         }
       });
 
-
-      // ==========================================
-      // LÓGICA DA INTERFACE DO DASHBOARD
-      // ==========================================
+      // Controles da Interface
       const navBtns = document.querySelectorAll(".nav-btn");
       const videoGroups = document.querySelectorAll(".video-group");
       const videoRows = document.querySelectorAll(".video-row");
@@ -904,7 +887,7 @@
         navSection.classList.toggle("open");
       });
 
-      // Navegação
+      // Lógica de Navegação
       navBtns.forEach(btn => {
         btn.addEventListener("click", () => {
           navBtns.forEach(b => b.classList.remove("active"));
@@ -929,13 +912,14 @@
             }
           });
 
+          // No mobile, fecha o menu automaticamente após selecionar
           if (window.innerWidth <= 768) {
             navSection.classList.remove("open");
           }
         });
       });
 
-      // Reprodução
+      // Lógica de Reprodução
       videoRows.forEach(row => {
         row.addEventListener("click", () => {
           videoRows.forEach(r => r.classList.remove("active"));
@@ -958,11 +942,27 @@
           kpiStatus.textContent = "Transmitindo";
           kpiStatus.style.color = "var(--success)";
 
+          // Ao clicar num vídeo no mobile/tablet, sobe a tela para exibir o player
           if (window.innerWidth <= 1024) {
+            // Em mobile (onde a rolagem principal foi transferida pro window), 
+            // precisamos rolar o documento ou o body
+            window.scrollTo({top: 0, behavior: 'smooth'});
             document.querySelector('.content-area').scrollTo({top: 0, behavior: 'smooth'});
           }
         });
       });
+
+      // =========================================================
+      // CORREÇÃO UX MOBILE: Auto-Load do primeiro módulo
+      // Impede que usuários de smartphone encarem uma tela vazia
+      // =========================================================
+      if (window.innerWidth <= 768) {
+        if (navBtns.length > 0) {
+          // Dispara o clique no primeiro item da navegação
+          navBtns[0].click();
+        }
+      }
+      
     });
   </script>
 </body>
